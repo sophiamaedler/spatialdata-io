@@ -174,7 +174,8 @@ def xenium(
         # instantiate a dict with default values to make code functional
         default_version = "xenium-0.0.0.0-0"
         specs = {"pixel_size":1.0, # default value needs to be non-zero since we divide by it
-                 "XeniumKeys.XENIUM_RANGER":{"version":default_version}
+                 "XeniumKeys.XENIUM_RANGER":{"version":default_version},
+                 XeniumKeys.ANALYSIS_SW_VERSION: default_version,
                  } 
 
     # to trigger the warning if the version cannot be parsed
