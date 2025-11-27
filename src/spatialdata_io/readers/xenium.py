@@ -166,8 +166,17 @@ def xenium(
         image_models_kwargs, labels_models_kwargs
     )
     path = Path(path)
-    with open(path / XeniumKeys.XENIUM_SPECS) as f:
-        specs = json.load(f)
+
+    if os.path.isfile(path / XeniumKeys.XENIUM_SPECS):
+        with open(path / XeniumKeys.XENIUM_SPECS) as f:
+            specs = json.load(f)
+    else:
+        # instantiate a dict with default values to make code functional
+        default_version = "xenium-0.0.0.0-0"
+        specs = {"pixel_size":1.0, # default value needs to be non-zero since we divide by it
+                 "XeniumKeys.XENIUM_RANGER":{"version":default_version}
+                 } 
+
     # to trigger the warning if the version cannot be parsed
     version = _parse_version_of_xenium_analyzer(specs, hide_warning=False)
 
